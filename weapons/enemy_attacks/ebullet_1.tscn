@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuye1b6qlc87u"]
+
+[ext_resource type="Script" path="res://weapons/enemy_attacks/ebullet_1.gd" id="1_ot53l"]
+[ext_resource type="Texture2D" uid="uid://chtfafs0hk2yr" path="res://0sprites/bulletsprite.png" id="2_be4kn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x5a8m"]
+radius = 13.0384
+
+[node name="ebullet_1" type="Area2D"]
+top_level = true
+collision_mask = 8
+script = ExtResource("1_ot53l")
+
+[node name="Projectile" type="Sprite2D" parent="."]
+position = Vector2(3.8147e-06, -2.86102e-06)
+scale = Vector2(2.35742, 2.16073)
+texture = ExtResource("2_be4kn")
+hframes = 9
+vframes = 5
+frame = 1
+region_enabled = true
+region_rect = Rect2(-1.51, 17, 147, 89.909)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x5a8m")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

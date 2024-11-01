@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c0ibdahnic1e6"
+path="res://.godot/imported/Roland 2.mp3-ce2d6a86a0d6e0db93ee5239b2373864.mp3str"
+
+[deps]
+
+source_file="res://audio/Roland 2.mp3"
+dest_files=["res://.godot/imported/Roland 2.mp3-ce2d6a86a0d6e0db93ee5239b2373864.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

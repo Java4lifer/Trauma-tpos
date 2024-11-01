@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://01nekdna7b3b"]
+
+[ext_resource type="Texture2D" uid="uid://c7ln3y0i05i0" path="res://assets/the_ground.png" id="1_ea2tr"]
+
+[node name="Sprite2D" type="Sprite2D"]
+show_behind_parent = true
+clip_children = 2
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-35, 6)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("1_ea2tr")

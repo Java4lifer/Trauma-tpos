@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb53c16t8860r"]
+
+[ext_resource type="Script" path="res://mspark.gd" id="1_n5thj"]
+[ext_resource type="PackedScene" uid="uid://fj6uoch4csrq" path="res://assets/master_spark_sprite.tscn" id="2_vb866"]
+[ext_resource type="Texture2D" uid="uid://ckwesu2nhqt3w" path="res://0sprites/lazer_redline.png" id="3_01lio"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fpxrp"]
+radius = 135.0
+height = 1615.0
+
+[node name="mspark" type="Area2D"]
+top_level = true
+disable_mode = 1
+collision_mask = 12
+script = ExtResource("1_n5thj")
+
+[node name="master_spark_sprite" parent="." instance=ExtResource("2_vb866")]
+unique_name_in_owner = true
+visible = false
+position = Vector2(806.5, -2)
+scale = Vector2(6.30078, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(806.5, -1)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_fpxrp")
+
+[node name="line" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(806.5, 0)
+scale = Vector2(1.77313, 0.220541)
+texture = ExtResource("3_01lio")
+region_enabled = true
+region_rect = Rect2(-4, 311, 908, 37)

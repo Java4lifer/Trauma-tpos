@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dlpuctnexndxw"
+path="res://.godot/imported/Too Many Trumpets - Item Asylum.mp3-2bdb96ef3a2a9be30542b7bac77bad3e.mp3str"
+
+[deps]
+
+source_file="res://audio/Too Many Trumpets - Item Asylum.mp3"
+dest_files=["res://.godot/imported/Too Many Trumpets - Item Asylum.mp3-2bdb96ef3a2a9be30542b7bac77bad3e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

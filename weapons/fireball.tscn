@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdm5wy624h8a5"]
+
+[ext_resource type="Script" path="res://weapons/fireball.gd" id="1_v6dod"]
+[ext_resource type="Texture2D" uid="uid://d2uqty0ltyjjc" path="res://assets/fireball.png" id="2_owimm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n4o4h"]
+radius = 72.0069
+
+[node name="fireball" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_v6dod")
+
+[node name="Projectile" type="Sprite2D" parent="."]
+position = Vector2(-4.05312e-06, 0.485597)
+scale = Vector2(0.77, 0.835144)
+texture = ExtResource("2_owimm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_n4o4h")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

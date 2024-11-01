@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://do76ynhkprlef"]
+
+[ext_resource type="Script" path="res://weapons/weapon.gd" id="1_48efl"]
+[ext_resource type="Texture2D" uid="uid://j4n2qdjj6110" path="res://assets/Kirara_Pistol.png" id="2_7drey"]
+[ext_resource type="Script" path="res://weapons/bulletdamage.gd" id="3_30yky"]
+[ext_resource type="AudioStream" uid="uid://bg55vd1i0im00" path="res://audio/Gunshot.mp3" id="4_2gbvp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y4vve"]
+radius = 23.6008
+
+[node name="gun" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_48efl")
+
+[node name="guntimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_y4vve")
+disabled = true
+
+[node name="weaponP_pistol" type="Marker2D" parent="."]
+
+[node name="bulspawn" type="Marker2D" parent="weaponP_pistol"]
+unique_name_in_owner = true
+position = Vector2(108, -2.42649)
+scale = Vector2(0.238591, 0.220588)
+script = ExtResource("3_30yky")
+
+[node name="Pistol" type="Sprite2D" parent="weaponP_pistol"]
+unique_name_in_owner = true
+position = Vector2(90, 3)
+scale = Vector2(3.20455, 3.20455)
+texture = ExtResource("2_7drey")
+region_enabled = true
+region_rect = Rect2(174, 198, 16, 11)
+
+[node name="channel2" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_2gbvp")
+volume_db = -10.285
+
+[connection signal="timeout" from="guntimer" to="." method="_on_guntimer_timeout"]

@@ -1,0 +1,249 @@
+[gd_scene load_steps=13 format=3 uid="uid://d001sylor0wh7"]
+
+[ext_resource type="Script" path="res://maps/game.gd" id="1_5v018"]
+[ext_resource type="PackedScene" uid="uid://dxdd04avs7ds5" path="res://player/pchar.tscn" id="1_qfftt"]
+[ext_resource type="Texture2D" uid="uid://111k5fj516xw" path="res://assets/background_1.png" id="2_tbcqn"]
+[ext_resource type="Texture2D" uid="uid://h4ah7jit7oai" path="res://assets/background_2.png" id="3_3nptv"]
+[ext_resource type="PackedScene" uid="uid://b7e0nuq1s18b4" path="res://assets/door.tscn" id="3_vpdx8"]
+[ext_resource type="Script" path="res://assets/to_level1.gd" id="4_4nrj2"]
+[ext_resource type="Script" path="res://maps/unpause.gd" id="7_44mm8"]
+[ext_resource type="AudioStream" uid="uid://b54pab2v22nuv" path="res://audio/LobotomyCorporation_OST__-_Second_Warning.mp3" id="7_3513l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xun8w"]
+size = Vector2(1112, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjfhj"]
+size = Vector2(1112, 76)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vtpod"]
+radius = 24.3516
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yetvx"]
+radius = 42.0476
+
+[node name="MainFrame" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(630, 481)
+script = ExtResource("1_5v018")
+
+[node name="map1" type="Sprite2D" parent="."]
+z_index = -1
+z_as_relative = false
+position = Vector2(-0.25, 68.75)
+scale = Vector2(1.9898, 1.52906)
+texture = ExtResource("2_tbcqn")
+
+[node name="world_box" type="StaticBody2D" parent="map1"]
+position = Vector2(0.125641, -44.9623)
+scale = Vector2(0.502564, 0.653997)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="map1/world_box"]
+position = Vector2(2, 539)
+shape = SubResource("RectangleShape2D_xun8w")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="map1/world_box"]
+position = Vector2(0, -405)
+shape = SubResource("RectangleShape2D_xun8w")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="map1/world_box"]
+position = Vector2(-581, 73)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_xun8w")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="map1/world_box"]
+position = Vector2(564, 130)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_xun8w")
+
+[node name="map2" type="Sprite2D" parent="."]
+z_index = -1
+z_as_relative = false
+position = Vector2(1879.25, 74.75)
+scale = Vector2(2.0102, 1.51197)
+texture = ExtResource("3_3nptv")
+
+[node name="world_box2" type="StaticBody2D" parent="map2"]
+position = Vector2(-934.855, -49.4389)
+scale = Vector2(0.497462, 0.661391)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="map2/world_box2"]
+position = Vector2(1878, 553)
+shape = SubResource("RectangleShape2D_cjfhj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="map2/world_box2"]
+position = Vector2(1876, -406)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_cjfhj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="map2/world_box2"]
+position = Vector2(1301, 89)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_cjfhj")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="map2/world_box2"]
+position = Vector2(2459, 146)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_cjfhj")
+
+[node name="door1" parent="." instance=ExtResource("3_vpdx8")]
+position = Vector2(1875, -435)
+scale = Vector2(2, 2)
+script = ExtResource("4_4nrj2")
+
+[node name="player_spawn" type="Area2D" parent="."]
+position = Vector2(1872, 438)
+
+[node name="spawner_player" type="CollisionShape2D" parent="player_spawn"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_vtpod")
+
+[node name="mob_spawn" type="Area2D" parent="."]
+position = Vector2(1879, -204)
+
+[node name="spawner_mob" type="CollisionShape2D" parent="mob_spawn"]
+unique_name_in_owner = true
+z_index = 1
+shape = SubResource("CircleShape2D_yetvx")
+
+[node name="spawner_mob2" type="CollisionShape2D" parent="mob_spawn"]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(-93, 0)
+shape = SubResource("CircleShape2D_yetvx")
+
+[node name="spawner_mob3" type="CollisionShape2D" parent="mob_spawn"]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(95, 0)
+shape = SubResource("CircleShape2D_yetvx")
+
+[node name="level0" type="Node2D" parent="."]
+
+[node name="door" parent="." instance=ExtResource("3_vpdx8")]
+position = Vector2(2, -450)
+scale = Vector2(2, 2)
+
+[node name="level1" type="Node2D" parent="."]
+
+[node name="mob_list" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1878, -203)
+
+[node name="player" parent="." instance=ExtResource("1_qfftt")]
+unique_name_in_owner = true
+position = Vector2(0, 396)
+
+[node name="gameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="gameOver"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.890196)
+script = ExtResource("7_44mm8")
+
+[node name="Label" type="Label" parent="gameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = -11.5
+offset_right = 30.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 200
+text = "MORTIS"
+
+[node name="retry" type="Button" parent="gameOver/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = 112.0
+offset_right = 192.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_pressed_color = Color(0.106237, 0.106237, 0.106237, 1)
+theme_override_font_sizes/font_size = 85
+text = "RETRY"
+
+[node name="stats" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="cycle" type="Label" parent="stats"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -538.0
+offset_right = 21.0
+offset_bottom = 273.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Cycle:"
+
+[node name="value" type="Label" parent="stats/cycle"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.5
+offset_top = -136.5
+offset_right = -107.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="round" type="Label" parent="stats"]
+offset_left = 195.0
+offset_right = 560.0
+offset_bottom = 303.0
+theme_override_font_sizes/font_size = 40
+text = "Round:"
+
+[node name="value" type="Label" parent="stats/round"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -151.5
+offset_right = 15.5
+offset_bottom = -14.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="audioChannel1" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_3513l")
+
+[connection signal="body_entered" from="door1" to="." method="_on_door_1_body_entered"]
+[connection signal="body_entered" from="door" to="." method="_on_door_body_entered"]
+[connection signal="child_entered_tree" from="mob_list" to="." method="_on_mob_list_child_entered_tree"]
+[connection signal="child_exiting_tree" from="mob_list" to="." method="_on_mob_list_child_exiting_tree"]
+[connection signal="no_hp" from="player" to="." method="_on_player_no_hp"]

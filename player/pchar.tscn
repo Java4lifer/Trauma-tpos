@@ -1,0 +1,251 @@
+[gd_scene load_steps=15 format=3 uid="uid://dxdd04avs7ds5"]
+
+[ext_resource type="Script" path="res://player/pchar.gd" id="1_jes6m"]
+[ext_resource type="Script" path="res://extra_scripts/shake_cam.gd" id="2_wbplt"]
+[ext_resource type="Texture2D" uid="uid://k7pu3q1eal4n" path="res://characters/kirara/Kirara_body2.png" id="3_6vk63"]
+[ext_resource type="Texture2D" uid="uid://bftfjrj2edwe4" path="res://characters/kirara/Kirara_pe2.png" id="4_shg1p"]
+[ext_resource type="Texture2D" uid="uid://dovrhleivm8fy" path="res://characters/kirara/Kirara_braco2.png" id="5_inq4f"]
+[ext_resource type="Texture2D" uid="uid://dq1y4rfdb75ri" path="res://assets/baa.jpg" id="6_aihcw"]
+[ext_resource type="Script" path="res://player/skills.gd" id="7_s2vyp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bv1fh"]
+size = Vector2(43, 82)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k7juy"]
+radius = 43.1045
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_otflm"]
+bg_color = Color(0.541176, 0.529412, 0.592157, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpwor"]
+bg_color = Color(0.142248, 0.717943, 0.275099, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Animation" id="Animation_livsf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("miss:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(78.5, -21)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("miss:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3qvmj"]
+resource_name = "miss"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("miss:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(78.5, -21), Vector2(109, -46)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("miss:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_imig5"]
+_data = {
+"RESET": SubResource("Animation_livsf"),
+"miss": SubResource("Animation_3qvmj")
+}
+
+[node name="player" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 13
+platform_floor_layers = 0
+script = ExtResource("1_jes6m")
+
+[node name="cam" type="Camera2D" parent="."]
+offset = Vector2(0, -80)
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("2_wbplt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -31)
+shape = SubResource("RectangleShape2D_bv1fh")
+
+[node name="hbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="hurt" type="CollisionShape2D" parent="hbox"]
+shape = SubResource("CircleShape2D_k7juy")
+
+[node name="hpbar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -73.0
+offset_top = -116.0
+offset_right = 74.0
+offset_bottom = -95.0
+theme_override_styles/background = SubResource("StyleBoxFlat_otflm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bpwor")
+value = 100.0
+allow_greater = true
+show_percentage = false
+
+[node name="ahp" type="Label" parent="hpbar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100/100"
+
+[node name="stun" type="Label" parent="hpbar"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = -24.0
+offset_right = 54.5
+offset_bottom = -1.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.999719, 0.213325, 0.16025, 1)
+text = "💫Stunned💫"
+
+[node name="miss" type="Label" parent="hpbar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 5.0
+offset_top = -21.0
+offset_right = 70.0
+offset_bottom = 2.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+text = "Dodged!"
+
+[node name="dodge" type="AnimationPlayer" parent="hpbar"]
+libraries = {
+"": SubResource("AnimationLibrary_imig5")
+}
+
+[node name="inv_gun" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -41)
+
+[node name="inv_swo" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -45)
+
+[node name="stats" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 0
+
+[node name="cash" type="Label" parent="stats"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -55.0
+offset_right = 141.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Gold: 0"
+
+[node name="skill_bar" type="VScrollBar" parent="stats"]
+offset_left = 188.0
+offset_top = 590.0
+offset_right = 551.0
+offset_bottom = 646.0
+step = 0.1
+
+[node name="dtimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="anipla" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="Kirara" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-11, -88)
+scale = Vector2(2.61207, 2.61207)
+texture = ExtResource("3_6vk63")
+region_enabled = true
+region_rect = Rect2(121, 178, 29, 52)
+
+[node name="feet1" type="Sprite2D" parent="Kirara"]
+position = Vector2(4.21122, 31.3927)
+texture = ExtResource("4_shg1p")
+region_enabled = true
+region_rect = Rect2(126, 223, 28, 25)
+
+[node name="arm1" type="Sprite2D" parent="Kirara"]
+position = Vector2(13.7822, 3.44554)
+texture = ExtResource("5_inq4f")
+region_enabled = true
+region_rect = Rect2(139, 193, 22, 27)
+
+[node name="DonQuixote" type="Sprite2D" parent="."]
+position = Vector2(0, -31)
+scale = Vector2(0.359375, 0.640625)
+texture = ExtResource("6_aihcw")
+
+[node name="stun_timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="skills" type="Node2D" parent="."]
+script = ExtResource("7_s2vyp")
+
+[node name="ayin" type="Marker2D" parent="."]
+unique_name_in_owner = true
+top_level = true
+
+[node name="car" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="dtimer" to="." method="_on_dtimer_timeout"]
+[connection signal="timeout" from="stun_timer" to="." method="_on_stun_timer_timeout"]

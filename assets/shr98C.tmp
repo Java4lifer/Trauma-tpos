@@ -1,0 +1,368 @@
+[gd_scene load_steps=11 format=3 uid="uid://c32sq5dab245y"]
+
+[ext_resource type="Texture2D" uid="uid://c5jc7hf1yonar" path="res://0sprites/Torii.png" id="1_6w4vj"]
+[ext_resource type="Script" path="res://extra_scripts/shrine/shrine.gd" id="1_7nle1"]
+[ext_resource type="Texture2D" uid="uid://4fmnwwfxys80" path="res://assets/area_button.png" id="3_r6hvc"]
+[ext_resource type="Script" path="res://extra_scripts/shrine/guicontrol.gd" id="4_2avcg"]
+[ext_resource type="Script" path="res://extra_scripts/shrine/okinaskills.gd" id="5_j1i2i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lqur4"]
+radius = 129.19
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1675"]
+bg_color = Color(1, 0.0784314, 0.0470588, 0.662745)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0e64l"]
+bg_color = Color(0, 0, 0, 0.356863)
+corner_radius_top_left = 55
+corner_radius_top_right = 55
+corner_radius_bottom_right = 55
+corner_radius_bottom_left = 55
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88e1r"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyyy"]
+bg_color = Color(0.6, 1, 0.6, 0.615686)
+
+[node name="shrine" type="Area2D"]
+z_index = 2
+script = ExtResource("1_7nle1")
+
+[node name="da_area" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lqur4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.63798e-12, -104)
+scale = Vector2(0.327824, 0.327824)
+texture = ExtResource("1_6w4vj")
+region_enabled = true
+region_rect = Rect2(97, 82, 807, 726)
+
+[node name="instruction" type="Sprite2D" parent="."]
+position = Vector2(0, -228)
+scale = Vector2(0.296296, 0.333333)
+texture = ExtResource("3_r6hvc")
+
+[node name="guis" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_2avcg")
+
+[node name="selection_gui" type="ColorRect" parent="guis"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = 44.0
+offset_right = -72.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 0.356863)
+
+[node name="faith" type="Label" parent="guis/selection_gui"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 27.0
+offset_top = 22.0
+offset_right = 84.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 50
+text = "Faith: 0"
+
+[node name="close" type="Button" parent="guis/selection_gui"]
+layout_mode = 0
+offset_left = 902.0
+offset_top = 6.0
+offset_right = 1003.0
+offset_bottom = 56.0
+mouse_default_cursor_shape = 2
+theme_override_colors/icon_normal_color = Color(0.843137, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_s1675")
+action_mode = 0
+text = "CLOSE"
+
+[node name="exchange" type="Label" parent="guis/selection_gui"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 113.0
+offset_right = 790.0
+offset_bottom = 182.0
+theme_override_font_sizes/font_size = 40
+text = "Exchange 50$ for 1 Faith point;"
+
+[node name="ex_button" type="Button" parent="guis/selection_gui"]
+layout_mode = 0
+offset_left = 429.0
+offset_top = 188.0
+offset_right = 632.0
+offset_bottom = 266.0
+theme_override_font_sizes/font_size = 35
+text = "EXCHANGE"
+
+[node name="Label" type="Label" parent="guis/selection_gui"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 471.0
+offset_right = 188.0
+offset_bottom = 540.0
+theme_override_font_sizes/font_size = 50
+text = "Deitys:"
+
+[node name="god_list" type="HScrollBar" parent="guis/selection_gui/Label"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 170.0
+offset_top = 6.0
+offset_right = 807.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 1.0
+step = 1.0
+value = 1.0
+custom_step = 1.0
+
+[node name="okina" type="Button" parent="guis/selection_gui/Label/god_list"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -22.5
+offset_right = 112.0
+offset_bottom = 22.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_0e64l")
+text = "Okina"
+
+[node name="kanako" type="Button" parent="guis/selection_gui/Label/god_list"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 119.0
+offset_top = -22.5
+offset_right = 250.0
+offset_bottom = 22.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_0e64l")
+text = "Kanako
+"
+
+[node name="skills_gui" type="ColorRect" parent="guis"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.356863)
+
+[node name="faith2" type="Label" parent="guis/skills_gui"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -565.0
+offset_top = 9.0
+offset_right = -218.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Faith: 0"
+
+[node name="close" type="Button" parent="guis/skills_gui"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -58.0
+offset_right = 107.0
+offset_bottom = -8.0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/icon_normal_color = Color(0.843137, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_s1675")
+action_mode = 0
+text = "CLOSE"
+
+[node name="okina" type="Control" parent="guis/skills_gui"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_j1i2i")
+
+[node name="brench1" type="ColorRect" parent="guis/skills_gui/okina"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -303.0
+offset_right = -279.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+color = Color(0, 0, 0, 0.494118)
+
+[node name="skill1" type="Button" parent="guis/skills_gui/okina/brench1"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -29.0
+offset_top = -79.0
+offset_right = 30.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_88e1r")
+text = "1"
+
+[node name="skill2" type="Button" parent="guis/skills_gui/okina/brench1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.5
+offset_top = -30.0
+offset_right = 29.5
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_88e1r")
+text = "2"
+
+[node name="skill3" type="Button" parent="guis/skills_gui/okina/brench1"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -637.0
+offset_right = 38.0
+offset_bottom = -561.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_88e1r")
+text = "3"
+
+[node name="info" type="ColorRect" parent="guis/skills_gui/okina"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 655.0
+offset_top = 43.0
+offset_right = -15.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.521569)
+
+[node name="s_name" type="Label" parent="guis/skills_gui/okina/info"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -233.0
+offset_right = 233.0
+offset_bottom = 69.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "NAME
+"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="s_cost" type="Label" parent="guis/skills_gui/okina/info"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -222.0
+offset_top = 142.0
+offset_right = 125.0
+offset_bottom = 197.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Price: 0 Faith"
+
+[node name="s_desc" type="Label" parent="guis/skills_gui/okina/info"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -222.0
+offset_top = 223.0
+offset_right = 9.0
+offset_bottom = 278.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Description:"
+
+[node name="desc" type="RichTextLabel" parent="guis/skills_gui/okina/info/s_desc"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.5
+offset_top = 27.5
+offset_right = 321.5
+offset_bottom = 201.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "Skill description goes here!"
+
+[node name="pray" type="Button" parent="guis/skills_gui/okina/info"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -93.0
+offset_top = -63.0
+offset_right = 93.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_spyyy")
+text = "PRAY"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="visibility_changed" from="guis/selection_gui" to="guis" method="_on_selection_gui_visibility_changed"]
+[connection signal="visibility_changed" from="guis/skills_gui" to="guis" method="_on_skills_gui_visibility_changed"]

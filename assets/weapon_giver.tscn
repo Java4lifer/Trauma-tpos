@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm1jvr0ivpwxx"]
+
+[ext_resource type="Script" path="res://assets/weapon_giver.gd" id="1_qemmo"]
+[ext_resource type="Texture2D" uid="uid://c537ovqh46mmg" path="res://assets/wep_area.png" id="2_05tgx"]
+[ext_resource type="Texture2D" uid="uid://4fmnwwfxys80" path="res://assets/area_button.png" id="2_o6b72"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pj3aq"]
+radius = 47.0106
+
+[node name="weapon_g" type="Area2D"]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_qemmo")
+
+[node name="area_sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 23)
+scale = Vector2(0.851852, 1)
+texture = ExtResource("2_05tgx")
+
+[node name="givera" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 23)
+shape = SubResource("CircleShape2D_pj3aq")
+
+[node name="store" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-90, 0)
+
+[node name="instruction" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -42)
+scale = Vector2(0.296296, 0.333333)
+texture = ExtResource("2_o6b72")
+
+[node name="propas" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = 44.0
+offset_top = -125.0
+offset_right = 186.0
+color = Color(0, 0, 0, 0.592157)
+
+[node name="nome" type="Label" parent="propas"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.0
+offset_top = -2.0
+offset_right = 60.0
+offset_bottom = 40.0
+grow_horizontal = 2
+text = "name"
+horizontal_alignment = 1
+autowrap_mode = 3
+max_lines_visible = 2
+
+[node name="status" type="Label" parent="propas"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 7.0
+offset_top = -22.5
+offset_right = 142.0
+offset_bottom = 52.5
+grow_vertical = 2
+text = "Dano: 0
+Recarga: 0s
+Preço: 0 gold"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

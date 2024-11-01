@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://brrtmc66qpta4"]
+
+[ext_resource type="Script" path="res://enemies/mob.gd" id="1_23mir"]
+[ext_resource type="PackedScene" uid="uid://g26kt2gacosb" path="res://characters/slime/slime.tscn" id="1_re824"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w78sa"]
+radius = 51.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_et06f"]
+size = Vector2(16.8571, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hb5yo"]
+bg_color = Color(0.541176, 0.529412, 0.592157, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oeuhc"]
+bg_color = Color(0.142248, 0.717943, 0.275099, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="mob" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+platform_floor_layers = 0
+script = ExtResource("1_23mir")
+
+[node name="Slime" parent="." instance=ExtResource("1_re824")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -29)
+shape = SubResource("CircleShape2D_w78sa")
+
+[node name="attack_area" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_mask = 8
+
+[node name="attack" type="CollisionShape2D" parent="attack_area"]
+position = Vector2(4.76837e-07, -29)
+scale = Vector2(7, 7)
+shape = SubResource("RectangleShape2D_et06f")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="hpbar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -73.0
+offset_top = -116.0
+offset_right = 74.0
+offset_bottom = -95.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hb5yo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_oeuhc")
+value = 100.0
+allow_greater = true
+show_percentage = false
+
+[node name="ahp" type="Label" parent="hpbar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100/100"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

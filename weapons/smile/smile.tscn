@@ -1,0 +1,266 @@
+[gd_scene load_steps=17 format=3 uid="uid://b3t4ch7exwj42"]
+
+[ext_resource type="Script" path="res://weapons/smile/smile.gd" id="1_eulan"]
+[ext_resource type="Texture2D" uid="uid://6ie3bl230cyx" path="res://assets/warning.png" id="1_ib7pj"]
+[ext_resource type="Texture2D" uid="uid://bjbku5st6ql80" path="res://assets/EGOWeaponTheSmile.webp" id="2_2w7yj"]
+[ext_resource type="AudioStream" uid="uid://w6ncecb14rlt" path="res://audio/MoSB crunch.mp3" id="4_b77u1"]
+[ext_resource type="AudioStream" uid="uid://6fp64dsilx2f" path="res://audio/SMILER - Item Asylum.mp3" id="5_bmh0y"]
+[ext_resource type="Texture2D" uid="uid://sytkja8ot5tc" path="res://characters/cirno.webp" id="5_gvotq"]
+[ext_resource type="AudioStream" uid="uid://cg2uxewovw0wn" path="res://audio/MoSB roar.mp3" id="5_js1k2"]
+
+[sub_resource type="Animation" id="Animation_xh8ft"]
+resource_name = "warning"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("warning_img:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.666667), Color(1, 1, 1, 0.164706), Color(1, 1, 1, 0.666667)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vfb47"]
+_data = {
+"warning": SubResource("Animation_xh8ft")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5gqm"]
+size = Vector2(199, 76)
+
+[sub_resource type="Animation" id="Animation_it568"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("handle_smile/smiler:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("handle_smile/smiler:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7.62939e-06, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0tgo1"]
+resource_name = "roar"
+length = 2.83
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("handle_smile/smiler:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-7.62939e-06, 0), Vector2(-1, -14), Vector2(0.999999, -13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("handle_smile/smiler:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.690238, -1.57348]
+}
+
+[sub_resource type="Animation" id="Animation_paegx"]
+resource_name = "swing_l"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("handle_smile/smiler:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.71915, 0.652705, 0.652705, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("handle_smile/smiler:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7.62939e-06, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_np1ln"]
+resource_name = "swing_r"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("handle_smile/smiler:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7.62939e-06, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("handle_smile/smiler:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.92161, -0.652753, -0.652753, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jjsho"]
+_data = {
+"RESET": SubResource("Animation_it568"),
+"roar": SubResource("Animation_0tgo1"),
+"swing_l": SubResource("Animation_paegx"),
+"swing_r": SubResource("Animation_np1ln")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dy5he"]
+radius = 500.196
+
+[node name="smile" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_eulan")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="warning_img" type="Sprite2D" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.315294)
+scale = Vector2(1.52583, 1.08725)
+texture = ExtResource("1_ib7pj")
+centered = false
+
+[node name="body_count" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 295.0
+offset_top = -44.0
+offset_right = 491.0
+offset_bottom = 11.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Corpses: 0"
+
+[node name="canvanim" type="AnimationPlayer" parent="CanvasLayer"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_vfb47")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1.00001, -1)
+scale = Vector2(0.205882, 0.0833333)
+shape = SubResource("RectangleShape2D_a5gqm")
+
+[node name="handle_smile" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="smiler" type="Sprite2D" parent="handle_smile"]
+unique_name_in_owner = true
+position = Vector2(-7.62939e-06, 0)
+scale = Vector2(0.292216, 0.268677)
+texture = ExtResource("2_2w7yj")
+offset = Vector2(277.192, 0)
+flip_h = true
+
+[node name="hitbox" type="Area2D" parent="handle_smile/smiler"]
+unique_name_in_owner = true
+position = Vector2(2.61087e-05, 0)
+scale = Vector2(3.42213, 3.72194)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="aaa" type="CollisionShape2D" parent="handle_smile/smiler/hitbox"]
+position = Vector2(95.5, 0)
+shape = SubResource("RectangleShape2D_a5gqm")
+
+[node name="eating" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_b77u1")
+
+[node name="scream" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_js1k2")
+
+[node name="warning" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_bmh0y")
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jjsho")
+}
+
+[node name="swing_timer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="DonQuixote" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.28, 0.291815)
+texture = ExtResource("5_gvotq")
+
+[node name="cdTime" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="roar_time" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="roarea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="roarea"]
+visible = false
+shape = SubResource("CircleShape2D_dy5he")
+
+[connection signal="timeout" from="swing_timer" to="." method="_on_swing_timer_timeout"]
+[connection signal="timeout" from="cdTime" to="." method="_on_cd_time_timeout"]
+[connection signal="timeout" from="roar_time" to="." method="_on_roar_time_timeout"]

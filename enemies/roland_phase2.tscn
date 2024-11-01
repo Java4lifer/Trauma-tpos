@@ -1,0 +1,569 @@
+[gd_scene load_steps=36 format=3 uid="uid://leg3o46rary5"]
+
+[ext_resource type="Script" path="res://blacksilence2.gd" id="1_aj21d"]
+[ext_resource type="Texture2D" uid="uid://csdkovwxh7bbq" path="res://characters/slime/black_silence_body.png" id="2_78sou"]
+[ext_resource type="Texture2D" uid="uid://btbxea1f3vwot" path="res://characters/slime/slime_body_hurt.png" id="3_k6vd3"]
+[ext_resource type="Texture2D" uid="uid://bpb1t4f8u74nx" path="res://characters/slime/black_silence_death.png" id="4_3ico0"]
+[ext_resource type="Script" path="res://enemies/black_silencedmg.gd" id="4_vswxf"]
+[ext_resource type="Texture2D" uid="uid://bthmfhrwwalax" path="res://assets/Blacksilence_weapons/roland_crystal.png" id="5_20j0k"]
+[ext_resource type="AudioStream" uid="uid://dkhwntd86jpr7" path="res://audio/goneangel.mp3" id="5_bldgt"]
+[ext_resource type="Texture2D" uid="uid://cdbv0k31ody0y" path="res://assets/Blacksilence_weapons/roland_atelier.png" id="6_e8is6"]
+[ext_resource type="AudioStream" uid="uid://bipl5qdqbhmpg" path="res://audio/explosion.mp3" id="6_titfg"]
+[ext_resource type="AudioStream" uid="uid://bg55vd1i0im00" path="res://audio/Gunshot.mp3" id="7_j4420"]
+[ext_resource type="Texture2D" uid="uid://dmtyt3qiw3hjf" path="res://assets/Blacksilence_weapons/roland_durandal.png" id="7_usr3w"]
+[ext_resource type="AudioStream" uid="uid://duqvguy3ldiwo" path="res://audio/Four Voices Whispering _ Horror Film Sound Effects.mp3" id="8_rw5gn"]
+[ext_resource type="Texture2D" uid="uid://duv83exbdkl22" path="res://assets/Blacksilence_weapons/roland_ranga2.png" id="8_xhhi3"]
+[ext_resource type="Texture2D" uid="uid://j31vih3uqlk4" path="res://assets/darker.png" id="9_3tmwq"]
+[ext_resource type="Texture2D" uid="uid://b3kmn26l66mvh" path="res://assets/Blacksilence_weapons/roland_ranga.png" id="9_sa67d"]
+[ext_resource type="Texture2D" uid="uid://e67xjk6uaumf" path="res://assets/Blacksilence_weapons/roland_wheels.png" id="10_6e275"]
+[ext_resource type="AudioStream" uid="uid://bxg0bn7n86axk" path="res://audio/roland_click.mp3" id="10_6oi37"]
+[ext_resource type="AudioStream" uid="uid://oyk80fmujqc5" path="res://audio/Library of Ruina SFX - Booked  Unit Death.mp3" id="12_way23"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ppoup"]
+radius = 51.0
+
+[sub_resource type="Animation" id="Animation_v1xnt"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Anchor/SlimeBody/SlimeBodyHurt:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Anchor/SlimeBody:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Anchor/slime_dying:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uwcti"]
+resource_name = "die"
+length = 5.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/SlimeBody:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.882353, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Anchor/slime_dying:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bjkcu"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Anchor/SlimeBody/SlimeBodyHurt:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_uea8w"]
+resource_name = "slash_durandal"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("weapons/aim/RolandDurandal:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.52069, -1.20883, 1.52018]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kaob5"]
+_data = {
+"RESET": SubResource("Animation_v1xnt"),
+"die": SubResource("Animation_uwcti"),
+"hurt": SubResource("Animation_bjkcu"),
+"slash_durandal": SubResource("Animation_uea8w")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ta386"]
+size = Vector2(288.75, 208.177)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_co7cf"]
+size = Vector2(23.8571, 22.2857)
+
+[sub_resource type="Animation" id="Animation_yyy2s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%black:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%reception:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0627451, 0.0627451, 0.0627451, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("black/border:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.529412)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%reception2:theme_override_colors/font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0627451, 0.0627451, 0.0627451, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i14ju"]
+resource_name = "revealing"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%black:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%reception:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 2.9, 4.2, 5.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.0627451, 0.0627451, 0.0627451, 0), Color(0.0627451, 0.0627451, 0.0627451, 0), Color(0.0627451, 0.0627451, 0.0627451, 1), Color(0.0646965, 0.0646965, 0.0646965, 1), Color(0.0627451, 0.0627451, 0.0627451, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1lv7p"]
+resource_name = "revel2"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("black:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n2wj2"]
+resource_name = "win"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("black/border:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.533333), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%reception2:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.1, 4.1, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.0627451, 0.0627451, 0.0627451, 0), Color(0.0627451, 0.0627451, 0.0627451, 0.988235), Color(0.0627451, 0.0627451, 0.0627451, 0.988235), Color(0.0627451, 0.0627451, 0.0627451, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jolj8"]
+_data = {
+"RESET": SubResource("Animation_yyy2s"),
+"revealing": SubResource("Animation_i14ju"),
+"revel2": SubResource("Animation_1lv7p"),
+"win": SubResource("Animation_n2wj2")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g1wfe"]
+bg_color = Color(0.541176, 0.529412, 0.592157, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bsex0"]
+bg_color = Color(0.142248, 0.717943, 0.275099, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Animation" id="Animation_hunhm"]
+resource_name = "die"
+length = 5.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/SlimeBody:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.882353, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Anchor/slime_dying:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_157u3"]
+_data = {
+"die": SubResource("Animation_hunhm")
+}
+
+[node name="roland2" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 3
+collision_mask = 5
+platform_floor_layers = 0
+script = ExtResource("1_aj21d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -29)
+shape = SubResource("CircleShape2D_ppoup")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_kaob5")
+}
+
+[node name="Anchor" type="Marker2D" parent="."]
+
+[node name="SlimeBody" type="Sprite2D" parent="Anchor"]
+texture = ExtResource("2_78sou")
+offset = Vector2(0, -36)
+
+[node name="SlimeBodyHurt" type="Sprite2D" parent="Anchor/SlimeBody"]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("3_k6vd3")
+offset = Vector2(0, -36)
+
+[node name="slime_dying" type="Sprite2D" parent="Anchor"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -36)
+texture = ExtResource("4_3ico0")
+
+[node name="weapons" type="Node2D" parent="."]
+
+[node name="RolandCrystal" type="Sprite2D" parent="weapons"]
+visible = false
+position = Vector2(23, -33)
+texture = ExtResource("5_20j0k")
+
+[node name="RolandCrystal2" type="Sprite2D" parent="weapons/RolandCrystal"]
+position = Vector2(-46, 0)
+texture = ExtResource("5_20j0k")
+flip_h = true
+
+[node name="aim" type="Marker2D" parent="weapons"]
+unique_name_in_owner = true
+position = Vector2(0, -33)
+
+[node name="RolandAtelier" type="Sprite2D" parent="weapons/aim"]
+visible = false
+position = Vector2(40, 0)
+texture = ExtResource("6_e8is6")
+
+[node name="RolandDurandal" type="Sprite2D" parent="weapons/aim"]
+visible = false
+position = Vector2(2, 1)
+rotation = 1.52069
+texture = ExtResource("7_usr3w")
+offset = Vector2(66, -1)
+
+[node name="hitbox" type="Area2D" parent="weapons/aim/RolandDurandal"]
+collision_layer = 0
+collision_mask = 12
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapons/aim/RolandDurandal/hitbox"]
+position = Vector2(175.825, 2.75543)
+rotation = 0.000852231
+shape = SubResource("RectangleShape2D_ta386")
+
+[node name="RolandRanga2" type="Sprite2D" parent="weapons/aim"]
+visible = false
+position = Vector2(0, 31)
+texture = ExtResource("8_xhhi3")
+
+[node name="RolandRanga" type="Sprite2D" parent="weapons/aim"]
+visible = false
+position = Vector2(6, -4)
+texture = ExtResource("9_sa67d")
+
+[node name="ranga_anchor" type="Marker2D" parent="weapons/aim/RolandRanga"]
+unique_name_in_owner = true
+
+[node name="RolandWheels" type="Sprite2D" parent="weapons/aim"]
+visible = false
+position = Vector2(100, 0)
+texture = ExtResource("10_6e275")
+
+[node name="weapon" type="Marker2D" parent="weapons/aim"]
+position = Vector2(59, 0)
+script = ExtResource("4_vswxf")
+
+[node name="attack_area" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_mask = 8
+collision_priority = 2.0
+monitorable = false
+
+[node name="attack" type="CollisionShape2D" parent="attack_area"]
+visible = false
+position = Vector2(4.76837e-07, -29)
+scale = Vector2(7, 7)
+shape = SubResource("RectangleShape2D_co7cf")
+
+[node name="reload" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="gone_angels" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_bldgt")
+
+[node name="wheels" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_titfg")
+
+[node name="atellier" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_j4420")
+
+[node name="whispers" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_rw5gn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="black" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="border" type="Sprite2D" parent="CanvasLayer/black"]
+modulate = Color(1, 1, 1, 0.529412)
+position = Vector2(576, 324.5)
+scale = Vector2(1.83437, 1.84167)
+texture = ExtResource("9_3tmwq")
+
+[node name="reception" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -32.5
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.04877)
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 0)
+theme_override_font_sizes/font_size = 47
+text = "- Reception of The Black Silence -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="fade" type="AnimationPlayer" parent="CanvasLayer"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_jolj8")
+}
+
+[node name="reception2" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -32.5
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.04877)
+theme_override_colors/font_color = Color(0.0627451, 0.0627451, 0.0627451, 0)
+theme_override_font_sizes/font_size = 47
+text = "- Reception of The Black Silence Conquered -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="click" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("10_6oi37")
+volume_db = 6.667
+
+[node name="booked" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("12_way23")
+
+[node name="hpbar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -73.0
+offset_top = -116.0
+offset_right = 74.0
+offset_bottom = -95.0
+theme_override_styles/background = SubResource("StyleBoxFlat_g1wfe")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bsex0")
+value = 100.0
+allow_greater = true
+show_percentage = false
+
+[node name="ahp" type="Label" parent="hpbar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100/100"
+
+[node name="bygones" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="win" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_157u3")
+}
+
+[connection signal="timeout" from="reload" to="." method="_on_reload_timeout"]
+[connection signal="child_exiting_tree" from="bygones" to="." method="_on_bygones_child_exiting_tree"]

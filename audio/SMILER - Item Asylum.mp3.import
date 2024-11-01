@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://6fp64dsilx2f"
+path="res://.godot/imported/SMILER - Item Asylum.mp3-e7d7c1660a7c0768e4fbc434b65c5e9f.mp3str"
+
+[deps]
+
+source_file="res://audio/SMILER - Item Asylum.mp3"
+dest_files=["res://.godot/imported/SMILER - Item Asylum.mp3-e7d7c1660a7c0768e4fbc434b65c5e9f.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

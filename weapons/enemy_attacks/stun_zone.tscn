@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq6xn1gtx5yrr"]
+
+[ext_resource type="Texture2D" uid="uid://ckwesu2nhqt3w" path="res://0sprites/lazer_redline.png" id="1_euegq"]
+[ext_resource type="Script" path="res://weapons/enemy_attacks/stun_zone.gd" id="1_ol7cd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghxkx"]
+size = Vector2(356, 1619)
+
+[node name="stun_zone" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 12
+monitorable = false
+script = ExtResource("1_ol7cd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(806.5, -1)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_ghxkx")
+
+[node name="line" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(806.5, 0)
+scale = Vector2(1.77313, 0.220541)
+texture = ExtResource("1_euegq")
+region_enabled = true
+region_rect = Rect2(-4, 311, 908, 37)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

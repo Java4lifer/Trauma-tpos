@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpow5c01ra51m"]
+
+[ext_resource type="Script" path="res://level1.gd" id="1_plcb1"]
+[ext_resource type="PackedScene" uid="uid://b7e0nuq1s18b4" path="res://assets/door.tscn" id="2_rimec"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_asbxd"]
+radius = 56.2228
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4sy54"]
+size = Vector2(1112, 76)
+
+[node name="level1" type="Node2D"]
+script = ExtResource("1_plcb1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="level1_shade" type="ColorRect" parent="CanvasLayer"]
+offset_left = -1607.0
+offset_top = -1148.0
+offset_right = 118.0
+offset_bottom = 36.0
+color = Color(0.188371, 0.188371, 0.188371, 1)
+
+[node name="level1_background" type="ColorRect" parent="CanvasLayer"]
+offset_left = -1093.0
+offset_top = -884.0
+color = Color(0.635294, 0.462745, 0.364706, 1)
+
+[node name="door" parent="." instance=ExtResource("2_rimec")]
+position = Vector2(-546, -956)
+scale = Vector2(2, 2)
+
+[node name="mob_spawn" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mob_spawn"]
+position = Vector2(-546, -728)
+shape = SubResource("CircleShape2D_asbxd")
+
+[node name="world_box2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world_box2"]
+position = Vector2(-543, 36)
+shape = SubResource("RectangleShape2D_4sy54")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="world_box2"]
+position = Vector2(-545, -916)
+shape = SubResource("RectangleShape2D_4sy54")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="world_box2"]
+position = Vector2(-1126, -421)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_4sy54")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="world_box2"]
+position = Vector2(40, -364)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_4sy54")
+
+[node name="mobs" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="door" to="." method="_on_door_body_entered"]

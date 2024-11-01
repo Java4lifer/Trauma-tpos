@@ -1,0 +1,423 @@
+[gd_scene load_steps=22 format=3 uid="uid://d001sylor0wh7"]
+
+[ext_resource type="Script" path="res://maps/game.gd" id="1_5v018"]
+[ext_resource type="Texture2D" uid="uid://111k5fj516xw" path="res://assets/background_1.png" id="2_tbcqn"]
+[ext_resource type="Texture2D" uid="uid://h4ah7jit7oai" path="res://assets/background_2.png" id="3_3nptv"]
+[ext_resource type="PackedScene" uid="uid://b7e0nuq1s18b4" path="res://assets/door.tscn" id="3_vpdx8"]
+[ext_resource type="Script" path="res://assets/to_level1.gd" id="4_4nrj2"]
+[ext_resource type="PackedScene" uid="uid://c32sq5dab245y" path="res://assets/shrine.tscn" id="4_mck7y"]
+[ext_resource type="Script" path="res://maps/unpause.gd" id="7_44mm8"]
+[ext_resource type="PackedScene" uid="uid://b3t4ch7exwj42" path="res://weapons/smile/smile.tscn" id="8_5yvyt"]
+[ext_resource type="AudioStream" uid="uid://dquv2uaxe05wo" path="res://audio/Concept.mp3" id="9_cmr2i"]
+[ext_resource type="PackedScene" uid="uid://dm1jvr0ivpwxx" path="res://assets/weapon_giver.tscn" id="9_hcpug"]
+[ext_resource type="PackedScene" uid="uid://do76ynhkprlef" path="res://weapons/weapon.tscn" id="10_0tjx8"]
+[ext_resource type="PackedScene" uid="uid://cesaqd0a15cko" path="res://weapons/machine_g.tscn" id="10_7tagn"]
+[ext_resource type="PackedScene" uid="uid://btth2ka2rfvra" path="res://weapons/grimorio.tscn" id="11_a6gsx"]
+[ext_resource type="Script" path="res://maps/pausemenu.gd" id="11_fogbe"]
+[ext_resource type="PackedScene" uid="uid://dal0b1e3irjr8" path="res://weapons/sword.tscn" id="12_txgl2"]
+[ext_resource type="PackedScene" uid="uid://dut4jck1kp1yx" path="res://weapons/mimicry.tscn" id="13_08uxe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xun8w"]
+size = Vector2(1112, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjfhj"]
+size = Vector2(1112, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6yxnx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vtpod"]
+radius = 21.0238
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yetvx"]
+radius = 42.0476
+
+[node name="MainFrame" type="Node2D"]
+y_sort_enabled = true
+position = Vector2(630, 481)
+script = ExtResource("1_5v018")
+
+[node name="map1" type="Sprite2D" parent="."]
+z_index = -1
+z_as_relative = false
+position = Vector2(56, 2557)
+scale = Vector2(1.9898, 1.52906)
+texture = ExtResource("2_tbcqn")
+
+[node name="world_box" type="StaticBody2D" parent="map1"]
+position = Vector2(0.125641, -44.9623)
+scale = Vector2(0.502564, 0.653997)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="map1/world_box"]
+position = Vector2(2, 539)
+shape = SubResource("RectangleShape2D_xun8w")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="map1/world_box"]
+position = Vector2(0, -405)
+shape = SubResource("RectangleShape2D_xun8w")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="map1/world_box"]
+position = Vector2(-581, 73)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_xun8w")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="map1/world_box"]
+position = Vector2(564, 130)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_xun8w")
+
+[node name="door" parent="map1" instance=ExtResource("3_vpdx8")]
+position = Vector2(1.13077, -339.261)
+scale = Vector2(1.00513, 1.30799)
+
+[node name="shrine" parent="map1" instance=ExtResource("4_mck7y")]
+position = Vector2(-1.00513, -222.359)
+
+[node name="map2" type="Sprite2D" parent="."]
+modulate = Color(0.598525, 0.598525, 0.598525, 1)
+show_behind_parent = true
+z_index = -1
+z_as_relative = false
+position = Vector2(1879.25, 74.75)
+scale = Vector2(2.782, 2.05556)
+texture = ExtResource("3_3nptv")
+
+[node name="world_box2" type="StaticBody2D" parent="map2"]
+position = Vector2(-934.855, -49.4389)
+scale = Vector2(0.497462, 0.661391)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="map2/world_box2"]
+position = Vector2(1878, 553)
+shape = SubResource("RectangleShape2D_cjfhj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="map2/world_box2"]
+position = Vector2(1876, -406)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_cjfhj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="map2/world_box2"]
+position = Vector2(1301, 89)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_cjfhj")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="map2/world_box2"]
+position = Vector2(2459, 146)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_cjfhj")
+
+[node name="door1" parent="map2" instance=ExtResource("3_vpdx8")]
+position = Vector2(-2.11426, -339.788)
+scale = Vector2(0.994926, 1.32278)
+script = ExtResource("4_4nrj2")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="map2"]
+position = Vector2(-282.683, -311.349)
+shape = SubResource("RectangleShape2D_6yxnx")
+target_position = Vector2(524.823, -3.30694)
+collide_with_areas = true
+
+[node name="map3" type="Sprite2D" parent="."]
+z_index = -1
+z_as_relative = false
+position = Vector2(4927, 119)
+scale = Vector2(2.0102, 1.51197)
+texture = ExtResource("3_3nptv")
+
+[node name="world_box3" type="StaticBody2D" parent="map3"]
+position = Vector2(-934.855, -49.4389)
+scale = Vector2(0.497462, 0.661391)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="map3/world_box3"]
+position = Vector2(1878, 553)
+shape = SubResource("RectangleShape2D_cjfhj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="map3/world_box3"]
+position = Vector2(1876, -406)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_cjfhj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="map3/world_box3"]
+position = Vector2(1301, 89)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_cjfhj")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="map3/world_box3"]
+position = Vector2(2459, 146)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_cjfhj")
+
+[node name="door2" parent="map3" instance=ExtResource("3_vpdx8")]
+position = Vector2(-2.11426, -339.788)
+scale = Vector2(0.994926, 1.32278)
+script = ExtResource("4_4nrj2")
+
+[node name="initial_position" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(56, 2880.25)
+scale = Vector2(1.9898, 1.52906)
+
+[node name="wep_givers" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="weapon_g4" parent="wep_givers" instance=ExtResource("9_hcpug")]
+position = Vector2(4450, 461)
+
+[node name="smile" parent="wep_givers/weapon_g4" instance=ExtResource("8_5yvyt")]
+
+[node name="weapon_g" parent="wep_givers" instance=ExtResource("9_hcpug")]
+position = Vector2(60, 2480)
+
+[node name="gun" parent="wep_givers/weapon_g" instance=ExtResource("10_0tjx8")]
+
+[node name="weapon_g2" parent="wep_givers" instance=ExtResource("9_hcpug")]
+position = Vector2(4513, -257.001)
+
+[node name="machagun" parent="wep_givers/weapon_g2" instance=ExtResource("10_7tagn")]
+
+[node name="weapon_g3" parent="wep_givers" instance=ExtResource("9_hcpug")]
+position = Vector2(5329, -261.001)
+
+[node name="grimorio" parent="wep_givers/weapon_g3" instance=ExtResource("11_a6gsx")]
+position = Vector2(1094, 2704)
+
+[node name="weapon_g5" parent="wep_givers" instance=ExtResource("9_hcpug")]
+position = Vector2(254, 2474)
+
+[node name="sword" parent="wep_givers/weapon_g5" instance=ExtResource("12_txgl2")]
+
+[node name="weapon_g6" parent="wep_givers" instance=ExtResource("9_hcpug")]
+position = Vector2(5405, 473)
+
+[node name="mimicry" parent="wep_givers/weapon_g6" instance=ExtResource("13_08uxe")]
+
+[node name="player_spawn" type="Area2D" parent="."]
+position = Vector2(1872, 438)
+
+[node name="spawner_player" type="CollisionShape2D" parent="player_spawn"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_vtpod")
+
+[node name="spawner_player2" type="CollisionShape2D" parent="player_spawn"]
+unique_name_in_owner = true
+position = Vector2(3066, 34)
+shape = SubResource("CircleShape2D_vtpod")
+
+[node name="mob_spawn" type="Area2D" parent="."]
+position = Vector2(1879, -204)
+
+[node name="spawner_mob" type="CollisionShape2D" parent="mob_spawn"]
+unique_name_in_owner = true
+z_index = 1
+shape = SubResource("CircleShape2D_yetvx")
+
+[node name="spawner_mob2" type="CollisionShape2D" parent="mob_spawn"]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(-93, 0)
+shape = SubResource("CircleShape2D_yetvx")
+
+[node name="spawner_mob3" type="CollisionShape2D" parent="mob_spawn"]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(95, 0)
+shape = SubResource("CircleShape2D_yetvx")
+
+[node name="spawner_mob4" type="CollisionShape2D" parent="mob_spawn"]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(-323, -55)
+shape = SubResource("CircleShape2D_yetvx")
+
+[node name="spawner_mob5" type="CollisionShape2D" parent="mob_spawn"]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(323, -55)
+shape = SubResource("CircleShape2D_yetvx")
+
+[node name="spawner_mob6" type="CollisionShape2D" parent="mob_spawn"]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(-323, 578)
+shape = SubResource("CircleShape2D_yetvx")
+
+[node name="spawner_mob7" type="CollisionShape2D" parent="mob_spawn"]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(323, 578)
+shape = SubResource("CircleShape2D_yetvx")
+
+[node name="spawner_mob8" type="CollisionShape2D" parent="mob_spawn"]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(-7, 295)
+shape = SubResource("CircleShape2D_yetvx")
+
+[node name="mob_list" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1878, -203)
+
+[node name="gameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="gameOver"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.890196)
+script = ExtResource("7_44mm8")
+
+[node name="Label" type="Label" parent="gameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = -11.5
+offset_right = 30.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 200
+text = "MORTIS"
+
+[node name="retry" type="Button" parent="gameOver/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = 112.0
+offset_right = 192.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_pressed_color = Color(0.106237, 0.106237, 0.106237, 1)
+theme_override_font_sizes/font_size = 85
+text = "RETRY"
+
+[node name="Timer" type="Timer" parent="gameOver/ColorRect"]
+process_mode = 3
+wait_time = 0.2
+one_shot = true
+
+[node name="stats" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="cycle" type="Label" parent="stats"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -538.0
+offset_right = 21.0
+offset_bottom = 273.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Cycle: 0"
+
+[node name="round" type="Label" parent="stats"]
+offset_left = 226.0
+offset_right = 591.0
+offset_bottom = 303.0
+theme_override_font_sizes/font_size = 40
+text = "Round: 0"
+
+[node name="pause_menu" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="pause_menu"]
+process_mode = 3
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 228.0
+offset_top = 19.0
+offset_right = -228.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.890196)
+script = ExtResource("11_fogbe")
+
+[node name="exit" type="Button" parent="pause_menu/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = 112.0
+offset_right = 192.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_pressed_color = Color(0.106237, 0.106237, 0.106237, 1)
+theme_override_font_sizes/font_size = 85
+text = "EXIT"
+
+[node name="resume" type="Button" parent="pause_menu/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -55.0
+offset_right = 192.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_pressed_color = Color(0.106237, 0.106237, 0.106237, 1)
+theme_override_font_sizes/font_size = 85
+text = "RESUME"
+
+[node name="Label" type="Label" parent="pause_menu/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -299.0
+offset_right = 289.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 150
+text = "PAUSED"
+
+[node name="audioChannel1" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_cmr2i")
+volume_db = 1.253
+
+[node name="black_silence" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1878, -203)
+
+[connection signal="body_entered" from="map1/door" to="." method="_on_door_body_entered"]
+[connection signal="body_entered" from="map2/door1" to="." method="_on_door_1_body_entered"]
+[connection signal="body_entered" from="map3/door2" to="." method="_on_door_2_body_entered"]
+[connection signal="child_entered_tree" from="mob_list" to="." method="_on_mob_list_child_entered_tree"]
+[connection signal="child_exiting_tree" from="mob_list" to="." method="_on_mob_list_child_exiting_tree"]
+[connection signal="child_entered_tree" from="black_silence" to="." method="_on_black_silence_child_entered_tree"]
+[connection signal="child_exiting_tree" from="black_silence" to="." method="_on_black_silence_child_exiting_tree"]

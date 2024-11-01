@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://w6ncecb14rlt"
+path="res://.godot/imported/MoSB crunch.mp3-d5b4253fd2f72f6c93101bd284d35c21.mp3str"
+
+[deps]
+
+source_file="res://audio/MoSB crunch.mp3"
+dest_files=["res://.godot/imported/MoSB crunch.mp3-d5b4253fd2f72f6c93101bd284d35c21.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
